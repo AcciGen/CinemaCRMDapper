@@ -8,7 +8,7 @@ namespace CinemaCRMDapper.Pattern
         public string CreateMovie(MovieDTO movieDTO);
         public IEnumerable<Movie> GetAllMovies();
         public Movie GetByIdMovie(int id);
-        public bool DeleteMovie(int id);
-        public Movie UpdateMovie(int id, MovieDTO movieDTO);
+        public string DeleteMovie(int id);
+        public string UpdateMovie(int id, MovieDTO movieDTO);
     }
 }

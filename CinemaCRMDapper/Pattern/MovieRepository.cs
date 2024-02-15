@@ -1,4 +1,5 @@
 ﻿using CinemaCRMDapper.Entities.DTOs;
+using CinemaCRMDapper.Models;
 using Dapper;
 using Npgsql;
 using System.Xml.Linq;
@@ -33,7 +34,7 @@ namespace CinemaCRMDapper.Pattern
                     connection.Execute(query, parameters);
                 }
 
-                return "Insertion done";
+                return "Insertion success";
             }
             catch (Exception ex)
             {
@@ -41,41 +42,59 @@ namespace CinemaCRMDapper.Pattern
             }
         }
 
-        public string DeleteStudent(int id)
+        public string DeleteMovie(int id)
         {
-
-            using (NpgsqlConnection connection = new NpgsqlConnection(_configuration.GetConnectionString("DefaultConnection")))
+            try
             {
-                string query = "Delete from movies where id = @id;";
+                using (NpgsqlConnection connection = new NpgsqlConnection(_configuration.GetConnectionString("DefaultConnection")))
+                {
+                    string query = "Delete from movies where id = @id;";
 
-                var response = connection.Execute(query, new { Id = id });
+                    var response = connection.Execute(query, new { Id = id });
 
-                return true;
+                    return "Deletion success";
+                }
+            }
+            catch (Exception ex)
+            {
+                return ex.Message;
             }
         }
 
-        public IEnumerable<Student> GetAllStudents()
+        public IEnumerable<Movie> GetAllMovies()
         {
-
             using (var connection = new NpgsqlConnection(_configuration.GetConnectionString("DefaultConnection")))
             {
-                string query = "select * from students";
+                string query = "Select * from movies;";
 
-                var result = connection.Query<Student>(query);
+                var result = connection.Query<Movie>(query);
 
                 return result;
             }
-
         }
 
-        public Student GetByIdStudent(int id)
+        public Movie GetByIdMovie(int id)
         {
-            throw new NotImplementedException();
+            try
+            {
+                using (var connection = new NpgsqlConnection(_configuration.GetConnectionString("DefaultConnection")))
+                {
+                    string query = "Select * from products where id = @id";
+
+                    var response = connection.Query<Movie>(query, new { Id = id }).ToList();
+
+                    return response;
+                }
+            }
+            catch
+            {
+                return new Movie() { };
+            }
         }
 
-        public Student UpdateStudent(int id, StudentDTO studentDTO)
+        public Movie UpdateMovie(int id, MovieDTO movieDTO)
         {
-            throw new NotImplementedException();
+
         }
     }
 }
