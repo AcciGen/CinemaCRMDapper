@@ -3,7 +3,7 @@ using CinemaCRMDapper.Models;
 
 namespace CinemaCRMDapper.Pattern
 {
-    public class IMovieRepository
+    public interface IMovieRepository
     {
         public string CreateMovie(MovieDTO movieDTO);
         public IEnumerable<Movie> GetAllMovies();

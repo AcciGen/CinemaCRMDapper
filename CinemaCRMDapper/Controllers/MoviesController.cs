@@ -7,7 +7,7 @@ using System.Reflection;
 
 namespace CinemaCRMDapper.Controllers
 {
-    [Route("[controller]")]
+    [Route("[controller]/[action]")]
     [ApiController]
     public class MoviesController : ControllerBase
     {
