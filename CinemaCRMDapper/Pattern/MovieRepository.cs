@@ -1,6 +1,7 @@
 ﻿using CinemaCRMDapper.Entities.DTOs;
 using Dapper;
 using Npgsql;
+using System.Xml.Linq;
 
 namespace CinemaCRMDapper.Pattern
 {
@@ -40,9 +41,17 @@ namespace CinemaCRMDapper.Pattern
             }
         }
 
-        public bool DeleteStudent(int id)
+        public string DeleteStudent(int id)
         {
-            throw new NotImplementedException();
+
+            using (NpgsqlConnection connection = new NpgsqlConnection(_configuration.GetConnectionString("DefaultConnection")))
+            {
+                string query = "Delete from movies where id = @id;";
+
+                var response = connection.Execute(query, new { Id = id });
+
+                return true;
+            }
         }
 
         public IEnumerable<Student> GetAllStudents()
