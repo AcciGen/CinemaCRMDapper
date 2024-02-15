@@ -83,7 +83,7 @@ namespace CinemaCRMDapper.Pattern
 
                     var response = connection.Query<Movie>(query, new { Id = id }).ToList();
 
-                    return response;
+                    return response[0];
                 }
             }
             catch
@@ -92,9 +92,30 @@ namespace CinemaCRMDapper.Pattern
             }
         }
 
-        public Movie UpdateMovie(int id, MovieDTO movieDTO)
+        public string UpdateMovie(int id, MovieDTO movieDTO)
         {
+            try
+            {
+                using (var connection = new NpgsqlConnection(_configuration.GetConnectionString("DefaultConnection")))
+                {
+                    string query = "Update movies set title = @title, year = @year, budget = @budget, avgRate = @avgRate where id = @id";
 
+                    connection.Execute(query, new
+                    {
+                        title = movieDTO.title,
+                        year = movieDTO.year,
+                        budget = movieDTO.budget,
+                        avgRate = movieDTO.avgRate,
+                        Id = id
+                    });
+
+                    return "Updation success";
+                }
+            }
+            catch (Exception ex)
+            {
+                return ex.Message;
+            }
         }
     }
 }
