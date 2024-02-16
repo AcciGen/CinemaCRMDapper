@@ -21,7 +21,7 @@ namespace CinemaCRMDapper.Pattern
             {
                 using (var connection = new NpgsqlConnection(_configuration.GetConnectionString("DefaultConnection")))
                 {
-                    string query = "Insert into students(title, year, budget, avgRate) values (@title, @year, @budget, @avgRate)";
+                    string query = "Insert into movies(title, year, budget, avgRate) values (@title, @year, @budget, @avgRate)";
 
                     var parameters = new MovieDTO
                     {
@@ -73,15 +73,15 @@ namespace CinemaCRMDapper.Pattern
             }
         }
 
-        public Movie GetByIdMovie(int id)
+        public Movie GetByIdMovie(int Id)
         {
             try
             {
                 using (var connection = new NpgsqlConnection(_configuration.GetConnectionString("DefaultConnection")))
                 {
-                    string query = "Select * from products where id = @id";
+                    string query = "Select * from movies where id = @id";
 
-                    var response = connection.Query<Movie>(query, new { Id = id }).ToList();
+                    List<Movie>? response = connection.Query<Movie>(query, new { id = Id }).ToList();
 
                     return response[0];
                 }
