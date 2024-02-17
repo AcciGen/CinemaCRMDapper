@@ -1,5 +1,6 @@
 using CinemaCRMDapper.Pattern.IRepositories;
 using CinemaCRMDapper.Pattern.Repositories;
+using CinemaCRMDapper.Services.MovieServices;
 
 namespace CinemaCRMDapper
 {
@@ -15,7 +16,10 @@ namespace CinemaCRMDapper
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
+
             builder.Services.AddScoped<IMovieRepository, MovieRepository>();
+            builder.Services.AddScoped<IMovieService, MovieService>();
+
             var app = builder.Build();
 
             // Configure the HTTP request pipeline.

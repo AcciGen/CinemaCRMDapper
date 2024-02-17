@@ -74,25 +74,6 @@ namespace CinemaCRMDapper.Pattern.Repositories
             }
         }
 
-        public Movie GetByIdMovie(int Id)
-        {
-            try
-            {
-                using (var connection = new NpgsqlConnection(_configuration.GetConnectionString("DefaultConnection")))
-                {
-                    string query = "Select * from movies where id = @id";
-
-                    List<Movie>? response = connection.Query<Movie>(query, new { id = Id }).ToList();
-
-                    return response[0];
-                }
-            }
-            catch
-            {
-                return new Movie() { };
-            }
-        }
-
         public string UpdateMovie(int id, MovieDTO movieDTO)
         {
             try
