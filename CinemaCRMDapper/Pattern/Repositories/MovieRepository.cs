@@ -1,10 +1,11 @@
 ﻿using CinemaCRMDapper.Entities.DTOs;
 using CinemaCRMDapper.Models;
+using CinemaCRMDapper.Pattern.IRepositories;
 using Dapper;
 using Npgsql;
 using System.Xml.Linq;
 
-namespace CinemaCRMDapper.Pattern
+namespace CinemaCRMDapper.Pattern.Repositories
 {
     public class MovieRepository : IMovieRepository
     {
@@ -102,10 +103,10 @@ namespace CinemaCRMDapper.Pattern
 
                     connection.Execute(query, new
                     {
-                        title = movieDTO.title,
-                        year = movieDTO.year,
-                        budget = movieDTO.budget,
-                        avgRate = movieDTO.avgRate,
+                        movieDTO.title,
+                        movieDTO.year,
+                        movieDTO.budget,
+                        movieDTO.avgRate,
                         Id = id
                     });
 

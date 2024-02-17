@@ -1,5 +1,5 @@
 ﻿using CinemaCRMDapper.Entities.DTOs;
-using CinemaCRMDapper.Pattern;
+using CinemaCRMDapper.Pattern.IRepositories;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Npgsql;

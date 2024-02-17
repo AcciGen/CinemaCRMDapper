@@ -1,7 +1,7 @@
 ﻿using CinemaCRMDapper.Entities.DTOs;
 using CinemaCRMDapper.Models;
 
-namespace CinemaCRMDapper.Pattern
+namespace CinemaCRMDapper.Pattern.IRepositories
 {
     public interface IMovieRepository
     {

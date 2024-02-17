@@ -1,5 +1,5 @@
-
-using CinemaCRMDapper.Pattern;
+using CinemaCRMDapper.Pattern.IRepositories;
+using CinemaCRMDapper.Pattern.Repositories;
 
 namespace CinemaCRMDapper
 {
