@@ -1,6 +1,6 @@
 ﻿using CinemaCRMDapper.Models;
 
-namespace CinemaCRMDapper.Services.MovieServices
+namespace CinemaCRMDapper.Services.MovieServices.IService
 {
     public interface IMovieService
     {

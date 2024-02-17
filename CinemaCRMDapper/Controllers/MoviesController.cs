@@ -1,5 +1,7 @@
 ﻿using CinemaCRMDapper.Entities.DTOs;
+using CinemaCRMDapper.Models;
 using CinemaCRMDapper.Pattern.IRepositories;
+using CinemaCRMDapper.Services.MovieServices.IService;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Npgsql;
@@ -12,10 +14,12 @@ namespace CinemaCRMDapper.Controllers
     public class MoviesController : ControllerBase
     {
         private readonly IMovieRepository _movieRepo;
+        private readonly IMovieService _movieService;
 
-        public MoviesController(IMovieRepository movieRepo)
+        public MoviesController(IMovieRepository movieRepo, IMovieService movieService)
         {
             _movieRepo = movieRepo;
+            _movieService = movieService;
         }
 
         [HttpGet]
@@ -34,11 +38,11 @@ namespace CinemaCRMDapper.Controllers
         }
 
         [HttpGet]
-        public IActionResult GetAllMoviesById(int id)
+        public IActionResult GetById(int Id)
         {
             try
             {
-                var response = _movieRepo.GetByIdMovie(id);
+                Movie response = _movieService.GetByIdMovie(Id);
 
                 return Ok(response);
             }

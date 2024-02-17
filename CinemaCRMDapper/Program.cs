@@ -1,6 +1,7 @@
 using CinemaCRMDapper.Pattern.IRepositories;
 using CinemaCRMDapper.Pattern.Repositories;
-using CinemaCRMDapper.Services.MovieServices;
+using CinemaCRMDapper.Services.MovieServices.IService;
+using CinemaCRMDapper.Services.MovieServices.Service;
 
 namespace CinemaCRMDapper
 {
